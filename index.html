@@ -1,53 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cwa</title>
-    <mata rel="icon" herf="https://th.bing.com/th/id/OIP.sA1OhCQWnsawOf4W4orZtwHaHa?w=202&h=202&c=7&r=0&o=5&dpr=1.3&pid=1.7"/>
-        <mata http-equiv="refresh" content="1"/>
-      <style>
-       
-      </style>  
+  <title>تعلم البرمجة</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
+  <script>
+    function sendEmail() {
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var website = document.getElementById('website').value;
+      
+      var subject = 'معلومات الموقع';
+      var body = 'اسم المستخدم: ' + name + '\n' +
+                 'البريد الإلكتروني: ' + email + '\n' +
+                 'رابط الموقع: ' + website;
+      
+      window.location.href = 'mailto:zaid_alubaidi@yahoo.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    }
+  </script>
 </head>
 <body>
- <table border="1" width="100%">
-    <caption>student</caption>
-    <thead>
-        <tr>
-            <td>id</td>
-            <td>name</td>
-            <td>age</td>
-            <td>phone</td>
-        </tr>
-    </thead>
-
-    <tbody>
-        <tr>
-            <td>1</td>
-            <td>ali</td>
-            <td>35</td>
-            <td>077</td>
-
-        </tr>
-
-
-        <tr>
-            <td>2</td>
-            <td>ghzoan</td>
-            <td>29</td>
-            <td>077</td>
-            <td rowspan="2">078</td>
-        </tr>
-    </tbody>
-    <tfoot>
-        <th colspan="4"> all student is 2</th>
-    </tfoot>
-
-
-
- </table>
- 
+  <div class="container">
+    <h1>كيفية تعلم البرمجة</h1>
+    <p>مرحبًا بك في موقعنا الإلكتروني! يرجى إدخال معلومات موقعك لإرسالها إلينا.</p>
     
+    <form>
+      <label for="name">الاسم:</label>
+      <input type="text" id="name" name="name" required>
+      
+      <label for="email">البريد الإلكتروني:</label>
+      <input type="text" id="email" name="email" required>
+      
+      <label for="website">رابط الموقع:</label>
+      <input type="text" id="website" name="website" required>
+      
+      <input type="button" value="موافق" onclick="sendEmail()">
+    </form>
+  </div>
 </body>
 </html>
