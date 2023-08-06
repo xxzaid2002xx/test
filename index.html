@@ -1,83 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>تعلم البرمجة</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-
-    h1 {
-      color: #333;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-    form {
-      margin-top: 20px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    input[type="text"], textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-    }
-
-    input[type="submit"] {
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      cursor: pointer;
-    }
-
-    input[type="submit"]:hover {
-      background-color: #45a049;
-    }
-  </style>
+  <title>مثال على الحصول على موقع الزائر وإرساله عبر البريد الإلكتروني</title>
   <script>
-    function sendEmail() {
-      var name = document.getElementById('name').value;
-      var email = document.getElementById('email').value;
-      var website = document.getElementById('website').value;
-      
-      var subject = 'معلومات الموقع';
-      var body = 'اسم المستخدم: ' + name + '\n' +
-                 'البريد الإلكتروني: ' + email + '\n' +
-                 'رابط الموقع: ' + website;
-      
-      window.location.href = 'mailto:zaid_alubaidi@yahoo.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    function sendEmailWithLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var latitude = position.coords.latitude;
+          var longitude = position.coords.longitude;
+
+          var emailBody = "موقع الزائر:\n\nخط العرض: " + latitude + "\nخط الطول: " + longitude;
+
+          window.location.href = "mailto:zaid_alubaidi@yahoo.com?subject=موقع الزائر&body=" + encodeURIComponent(emailBody);
+        }, function(error) {
+          console.error("حدث خطأ أثناء الوصول إلى موقع الزائر:", error);
+        });
+      } else {
+        console.error("متصفحك لا يدعم خدمة تحديد الموقع الجغرافي.");
+      }
     }
   </script>
 </head>
 <body>
-  <div class="container">
-    <h1>كيفية تعلم البرمجة</h1>
-    <p>مرحبًا بك في موقعنا الإلكتروني! يرجى إدخال معلومات موقعك لإرسالها إلينا.</p>
-    
-    <form>
-      <label for="name">الاسم:</label>
-      <input type="text" id="name" name="name" required>
-      
-      <label for="email">البريد الإلكتروني:</label>
-      <input type="text" id="email" name="email" required>
-      
-      <label for="website">رابط الموقع:</label>
-      <input type="text" id="website" name="website" required>
-      
-      <input type="button" value="موافق" onclick="sendEmail()">
-    </form>
-  </div>
+  <h1>إرسال موقع الزائر عبر البريد الإلكتروني</h1>
+  <button type="button" onclick="sendEmailWithLocation()">إرسال</button>
 </body>
 </html>
